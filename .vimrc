@@ -4,6 +4,7 @@ set number "行番号を表示する
 set title "編集中のファイル名を表示
 set showmatch "括弧入力時の対応する括弧を表示
 syntax on "コードの色分け
+syntax enable " 構文に色を付ける
 
 "##Tab Settings"
 set expandtab " タブ入力を複数の空白入力に置き換える
@@ -28,7 +29,14 @@ set smartcase "検索文字列に大文字が含まれている場合は区別�
 set wrapscan "検索時に最後まで行ったら最初に戻
 filetype off
 
-"# vim plug in settings
+" ### 表示設定 ###
+set laststatus=2 " ステータスラインを常に表示
+set showmode " 現在のモードを表示
+set showcmd " 打ったコマンドをステータスラインの下に表示
+set ruler " ステータスラインの右側にカーソルの現在位置を表示する
+
+
+" ### START PlUG-IN ###
 if has('vim_starting')
     " 初回起動時のみruntimepathにNeoBundleのパスを指定する
     set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -42,36 +50,22 @@ endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-" インストールするVimプラグインを以下に記述
-" NeoBundle自身を管理
-NeoBundleFetch 'Shougo/neobundle.vim'
+" ### NEO BUNDLE ###
+"
+NeoBundleFetch 'Shougo/neobundle.vim' " ADMIN ALL NEOBUNDLE
+
 NeoBundle 'vim-scripts/twilight'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'mattn/emmet-vim'
-
-syntax enable " 構文に色を付ける
-
-" ステータスラインの表示内容強化
-NeoBundle 'itchyny/lightline.vim'
-"----------------------------------------------------------
-" ステータスラインの設定
-"----------------------------------------------------------
-set laststatus=2 " ステータスラインを常に表示
-set showmode " 現在のモードを表示
-set showcmd " 打ったコマンドをステータスラインの下に表示
-set ruler " ステータスラインの右側にカーソルの現在位置を表示する
-
-" インデントの可視化
-NeoBundle 'Yggdroot/indentLine'
-
-" Complete the parental
-NeoBundle 'cohama/lexima.vim'
+NeoBundle 'scrooloose/nerdtree' " NERD TREEを使えるように
+NeoBundle 'mattn/emmet-vim' " html:5 で補完.
+NeoBundle 'itchyny/lightline.vim' " ステータスラインの表示内容強化
+NeoBundle 'Yggdroot/indentLine' " インデントの可視化
+NeoBundle 'cohama/lexima.vim' " Complete the parental
 "----------------------------------------------------------
 call neobundle#end()
 " ファイルタイプ別のVimプラグイン/インデントを有効にする
 filetype plugin indent on
 
-" 未インストールのVimプラグインがある場合、インストールするかどうかを尋ねてくれるようにする設定・・・・・・③
+" 未インストールがあるかチェック
 NeoBundleCheck
 
 

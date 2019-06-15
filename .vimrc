@@ -1,3 +1,6 @@
+language C
+" 15:51 06-15, 15:52
+
 set encoding=utf-8
 "#####表示設定#####
 set number "行番号を表示する
@@ -13,17 +16,18 @@ set softtabstop=4 " 連続した空白に対してタブキーやバックスペ
 set autoindent " 改行時に前の行のインデントを継続する
 set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
 set shiftwidth=4 " smartindentで増減する幅
-set listchars=tab:\ \ ,eol:$
+set listchars=tab:\ \ ,trail:_  " Not EOL:, end of line to nothing but last space  
 
 "List setting"
 set list
-set virtualedit=block 
+set virtualedit=block
 set whichwrap=b,s,[,],<,>
 set backspace=indent,eol,start
 set wildmenu
 
 
 "#####検索設定#####
+set hlsearch
 set ignorecase "大文字/小文字の区別なく検索する
 set smartcase "検索文字列に大文字が含まれている場合は区別して検索する
 set wrapscan "検索時に最後まで行ったら最初に戻
@@ -32,6 +36,7 @@ filetype off
 " ### 表示設定 ###
 set laststatus=2 " ステータスラインを常に表示
 set showmode " 現在のモードを表示
+
 set showcmd " 打ったコマンドをステータスラインの下に表示
 set ruler " ステータスラインの右側にカーソルの現在位置を表示する
 
@@ -51,8 +56,17 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 " ### NEO BUNDLE ###
-"
 NeoBundleFetch 'Shougo/neobundle.vim' " ADMIN ALL NEOBUNDLE
+
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\}
 
 NeoBundle 'vim-scripts/twilight'
 NeoBundle 'scrooloose/nerdtree' " NERD TREEを使えるように
@@ -60,6 +74,19 @@ NeoBundle 'mattn/emmet-vim' " html:5 で補完.
 NeoBundle 'itchyny/lightline.vim' " ステータスラインの表示内容強化
 NeoBundle 'Yggdroot/indentLine' " インデントの可視化
 NeoBundle 'cohama/lexima.vim' " Complete the parental
+" PHP LINT
+""
+" PHP Lint 
+" nmap ,l :call PHPLint()<CR>
+"
+" " " 
+" "  PHPLint
+" "  
+" "  @author halt feits <halt.feits at gmail.com>
+" "  
+" function PHPLint()
+"     let result = system( &ft . ' -l ' )"NeoBundle 'Shougo/vimshell'
+NeoBundle 'syntastic.git'
 "----------------------------------------------------------
 call neobundle#end()
 " ファイルタイプ別のVimプラグイン/インデントを有効にする
@@ -68,5 +95,32 @@ filetype plugin indent on
 " 未インストールがあるかチェック
 NeoBundleCheck
 
+" PathoGen Settings
+execute pathogen#infect()
+" styntatic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+""
+" PHP Lint 
+nmap ,l :call PHPLint()<CR>
+"
+"  PHPLint
+"  
+"  @author halt feits <halt.feits at gmail.com>
+"  
+function PHPLint()
+    let result = system( &ft . ' -l ' . bufname("") )
+    echo result
+endfunction
+
+
+map <silent> <C-l> :NERDTreeToggle<CR>
 
 

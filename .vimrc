@@ -1,4 +1,5 @@
 language C
+set noswapfile "Pretend to make .swap
 " 15:51 06-15, 15:52
 
 set encoding=utf-8
@@ -74,6 +75,7 @@ NeoBundle 'mattn/emmet-vim' " html:5 で補完.
 NeoBundle 'itchyny/lightline.vim' " ステータスラインの表示内容強化
 NeoBundle 'Yggdroot/indentLine' " インデントの可視化
 NeoBundle 'cohama/lexima.vim' " Complete the parental
+NeoBundle 'thinca/vim-quickrun' " Complete the parental
 " PHP LINT
 ""
 " PHP Lint 

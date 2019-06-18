@@ -13,6 +13,7 @@ alias re='exec $SHELL -l'
 alias o='open'
 alias sl='ls'
 alias la='ls -a'
+alias ll='ls -l'
 
 alias cd='cdls'
 

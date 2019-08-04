@@ -26,5 +26,8 @@ alias cmt='git commit'
 alias s='git status'
 alias pull='git pull origin master'
 
-
+function mkdir
+{
+    command mkdir $1 && cd $1
+}
 

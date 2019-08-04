@@ -76,19 +76,8 @@ NeoBundle 'itchyny/lightline.vim' " ステータスラインの表示内容強�
 NeoBundle 'Yggdroot/indentLine' " インデントの可視化
 NeoBundle 'cohama/lexima.vim' " Complete the parental
 NeoBundle 'thinca/vim-quickrun' " Complete the parental
-" PHP LINT
-""
-" PHP Lint 
-" nmap ,l :call PHPLint()<CR>
-"
-" " " 
-" "  PHPLint
-" "  
-" "  @author halt feits <halt.feits at gmail.com>
-" "  
-" function PHPLint()
-"     let result = system( &ft . ' -l ' )"NeoBundle 'Shougo/vimshell'
-NeoBundle 'syntastic.git'
+NeoBundle 'syntastic.git' " annoying in html img
+NeoBundle 'Quramy/vim-js-pretty-template'
 "----------------------------------------------------------
 call neobundle#end()
 " ファイルタイプ別のVimプラグイン/インデントを有効にする
@@ -125,4 +114,5 @@ endfunction
 
 map <silent> <C-l> :NERDTreeToggle<CR>
 
-
+" insert to normal by jj
+imap jj <Esc>

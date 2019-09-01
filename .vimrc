@@ -116,3 +116,8 @@ map <silent> <C-l> :NERDTreeToggle<CR>
 
 " insert to normal by jj
 imap jj <Esc>
+" Underline cursor??
+autocmd VimEnter, ColorScheme * :highlight CursorLine cterm=underline ctermbg=234
+
+" Console log from insert mode; Puts focus inside parentheses
+imap cll console.log();<Esc>==f(a

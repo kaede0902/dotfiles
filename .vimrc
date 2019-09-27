@@ -26,8 +26,10 @@ set whichwrap=b,s,[,],<,>
 set backspace=indent,eol,start
 set wildmenu
 
+" clipboard setting 
+set clipboard=unnamed
 
-"#####検索設定#####
+" Search Setting
 set hlsearch
 set ignorecase "大文字/小文字の区別なく検索する
 set smartcase "検索文字列に大文字が含まれている場合は区別して検索する
@@ -78,6 +80,11 @@ NeoBundle 'cohama/lexima.vim' " Complete the parental
 NeoBundle 'thinca/vim-quickrun' " Complete the parental
 NeoBundle 'syntastic.git' " annoying in html img
 NeoBundle 'Quramy/vim-js-pretty-template'
+NeoBundle 'Shougo/neocomplcache' 
+NeoBundle 'Shougo/neosnippet' 
+NeoBundle 'Shougo/neosnippet-snippets' 
+NeoBundle 'surround.vim'
+
 "----------------------------------------------------------
 call neobundle#end()
 " ファイルタイプ別のVimプラグイン/インデントを有効にする
@@ -104,6 +111,8 @@ nmap ,l :call PHPLint()<CR>
 "
 "  PHPLint
 "  
+map H ^
+map L $
 "  @author halt feits <halt.feits at gmail.com>
 "  
 function PHPLint()
@@ -111,13 +120,43 @@ function PHPLint()
     echo result
 endfunction
 
-
+" keymapping settings ----------------
+" Toggle NerdTree by ctrl l
 map <silent> <C-l> :NERDTreeToggle<CR>
-
 " insert to normal by jj
 imap jj <Esc>
-" Underline cursor??
-autocmd VimEnter, ColorScheme * :highlight CursorLine cterm=underline ctermbg=234
+" esc esc to noh
+nnoremap <Esc><Esc> :nohlsearch<CR>
+" H, L to ^, $
+map H ^
+map L $
+" ?
+nnoremap <C-j> }
+nnoremap <C-k> {
+
 
 " Console log from insert mode; Puts focus inside parentheses
 imap cll console.log();<Esc>==f(a
+
+" ## NeoSnippet Settings
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+

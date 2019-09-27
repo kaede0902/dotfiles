@@ -34,3 +34,5 @@ function mkdir {
 }
 
 eval "$(rbenv init -)"
+
+tmux source-file ~/.tmux.conf

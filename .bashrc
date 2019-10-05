@@ -20,7 +20,6 @@ alias ll='ls -l'
 alias cd='cdls'
 
 alias vi='vim'
-eval "$(hub alias -s)"
 
 
 alias p='git push origin master'
@@ -32,5 +31,3 @@ alias pull='git pull origin master'
 function mkdir {
     command mkdir $1 && cd $1
 }
-
-eval "$(rbenv init -)"

@@ -33,6 +33,12 @@ if [ $(uname) =  'Darwin' ]; then
     alias o='open'
 fi
 
+if [ $(uname) =  'Linux' ]; then
+    echo Your machine now: Linux;
+    ### Linux Alias
+    alias o='xdg-open'
+fi
+
 ## command shorten alias
 alias be='bundle exec'
 alias re='exec $SHELL -l'
@@ -54,13 +60,14 @@ alias pull='git pull origin master'
 function mkdir {
     command mkdir $1 && cd $1
 }
-<<<<<<< HEAD
-=======
 function cdls() {
     \cd "$@" && ls
 } # rm ls later
 alias cd='cdls'
 
-## tmux conf
+
 tmux source-file ~/.tmux.conf
->>>>>>> b9c374043b155b0118b4fc6a34b5664323a95a1f
+
+
+
+

@@ -26,7 +26,7 @@ set whichwrap=b,s,[,],<,>
 set backspace=indent,eol,start
 set wildmenu
 
-" clipboard setting 
+" clipboard setting, copy paste yank
 set clipboard=unnamed
 
 " Search Setting
@@ -49,7 +49,7 @@ if has('vim_starting')
     " 初回起動時のみruntimepathにNeoBundleのパスを指定する
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 
-    " NeoBundleが未インストールであればgit cloneする・・・・・・①
+    " If NeoBundle is Not installed, clone that.
     if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
         echo "install NeoBundle..."
         :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
@@ -58,7 +58,7 @@ endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-" ### NEO BUNDLE ###
+" ### NEO BUNDLE Plugins ###
 NeoBundleFetch 'Shougo/neobundle.vim' " ADMIN ALL NEOBUNDLE
 
 NeoBundle 'Shougo/vimproc.vim', {
@@ -72,9 +72,9 @@ NeoBundle 'Shougo/vimproc.vim', {
 \}
 
 NeoBundle 'vim-scripts/twilight'
-NeoBundle 'scrooloose/nerdtree' " NERD TREEを使えるように
+NeoBundle 'scrooloose/nerdtree' " Enable NerdTreee
 NeoBundle 'mattn/emmet-vim' " html:5 で補完.
-NeoBundle 'itchyny/lightline.vim' " ステータスラインの表示内容強化
+NeoBundle 'itchyny/lightline.vim' " status line表示内容強化
 NeoBundle 'Yggdroot/indentLine' " インデントの可視化
 NeoBundle 'cohama/lexima.vim' " Complete the parental
 NeoBundle 'thinca/vim-quickrun' " Complete the parental
@@ -83,7 +83,9 @@ NeoBundle 'Quramy/vim-js-pretty-template'
 NeoBundle 'Shougo/neocomplcache' 
 NeoBundle 'Shougo/neosnippet' 
 NeoBundle 'Shougo/neosnippet-snippets' 
-NeoBundle 'surround.vim'
+NeoBundle 'surround.vim' "Surround by v and ctrl S
+NeoBundle 'iamcco/mathjax-support-for-mkdp' " .md prev
+NeoBundle 'iamcco/markdown-preview.vim' " .md prev
 
 "----------------------------------------------------------
 call neobundle#end()
